@@ -39,5 +39,19 @@ namespace QuizApiApplication.Services
             _ctx.SaveChanges();
             return _ctx.Questions.SingleOrDefault(q => q.Id == _question.Id);
         }
+
+        public Answer CreateAnswer(Answer answer)
+        {
+            _ctx.Answers.Add(answer);
+            _ctx.SaveChanges();
+            return _ctx.Answers.SingleOrDefault(a => a.Id == answer.Id);   
+        }
+
+        public Quiz CreateQuiz(Quiz quiz)
+        {
+            _ctx.Quiz.Add(quiz);
+            _ctx.SaveChanges();
+            return _ctx.Quiz.SingleOrDefault(q => q.Id == quiz.Id);
+        }
     }
 }

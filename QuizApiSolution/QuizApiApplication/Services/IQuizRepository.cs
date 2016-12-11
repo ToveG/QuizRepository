@@ -15,5 +15,6 @@ namespace QuizApiApplication.Services
         Quiz GetQuizById(int id);
         Question CreateQuestion(Question question);
         Answer CreateAnswer(Answer answer);
+        Quiz CreateQuiz(Quiz quiz);
     }
 }

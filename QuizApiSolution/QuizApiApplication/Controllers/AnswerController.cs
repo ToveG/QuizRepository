@@ -1,11 +1,6 @@
-﻿using QuizApiApplication.Entities;
+﻿using AutoMapper;
+using QuizApiApplication.Entities;
 using QuizApiApplication.Services;
-using QuizApplication.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace QuizApiApplication.Controllers
@@ -27,10 +22,12 @@ namespace QuizApiApplication.Controllers
             set { _quizRepository = value; }
         }
 
-        [Route("api/questions/{questionId}/answer")]
+        
+        
+        [Route("api/answer/question/{questionId}")]
         [HttpPost]
-        public IHttpActionResult CreateAnswer(int _questionId,
-         [FromBody] CreateAnswer answer)
+        public IHttpActionResult CreateAnswer(int questionId,
+         [FromBody] Models.CreateAnswer answer)
             {
             
             if (answer == null)
@@ -42,24 +39,24 @@ namespace QuizApiApplication.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var question = QuizRepository.GetQuestionById(_questionId);
+            var question = QuizRepository.GetQuestionById(questionId);
 
             if (question == null)
             {
                 return NotFound();
             }
 
-            var answerToInsert = new Entities.Answer()
+            var answerToInsert = new Answer()
             {
-                AnswerAlternetive = answer.AnswerAlternetive,
+                AnswerAlternative = answer.AnswerAlternative,
                 CorrectAnswer = answer.CorrectAnswer,
                 question = question
             };
 
             var item = QuizRepository.CreateAnswer(answerToInsert);
 
-            return Created("GetResponseOption", Mapper.Map<Models.ResponseOption>(item));
+            return Created("Created", Mapper.Map<Models.Answer>(item));
         }
-
+        
     }
 }

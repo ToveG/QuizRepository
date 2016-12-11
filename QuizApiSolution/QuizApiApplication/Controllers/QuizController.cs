@@ -1,12 +1,10 @@
 ﻿using QuizApiApplication.Services;
 using QuizApiApplication.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using QuizApiApplication.Models;
 
 namespace QuizApiApplication.Controllers
 {
@@ -27,6 +25,7 @@ namespace QuizApiApplication.Controllers
             set { _quizRepository = value; }
         }
 
+        [Route("api/quiz")]
         public IHttpActionResult Get()
         {
             var allQuiz = QuizRepository.GetAllQuiz();
@@ -36,7 +35,7 @@ namespace QuizApiApplication.Controllers
                 quiz.totalAmountOfQuestions = questionCount;
             }
 
-            return Ok(Mapper.Map<IEnumerable<QuizApplication.Dto.Quiz>>(allQuiz));
+            return Ok(Mapper.Map<IEnumerable<Models.Quiz>>(allQuiz));
         }
 
         [Route("api/quiz/{id}")]
@@ -48,7 +47,34 @@ namespace QuizApiApplication.Controllers
                 return NotFound();
             }
 
-            return Ok(Mapper.Map<QuizApplication.Dto.Quiz>(selectedQuiz));
+
+
+            return Ok(Mapper.Map<Models.Quiz>(selectedQuiz));
+        }
+
+        [Route("api/quiz")]
+        [HttpPost]
+        public IHttpActionResult CreateQuiz(
+            [FromBody] CreateQuiz quiz)
+        {
+            if (quiz == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var quizToInsert = new Entities.Quiz()
+            {
+                Name = quiz.Name
+            };
+
+            var item = QuizRepository.CreateQuiz(quizToInsert);
+
+            return Created("Created", Mapper.Map<Models.Quiz>(item));
         }
     }
 }

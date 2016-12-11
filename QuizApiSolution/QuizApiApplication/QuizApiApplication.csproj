@@ -114,7 +114,21 @@
     <Compile Include="Migrations\201612100914473_firstadd.Designer.cs">
       <DependentUpon>201612100914473_firstadd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612111422104_someChanges.cs" />
+    <Compile Include="Migrations\201612111422104_someChanges.Designer.cs">
+      <DependentUpon>201612111422104_someChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612111903438_fixesInAnswer.cs" />
+    <Compile Include="Migrations\201612111903438_fixesInAnswer.Designer.cs">
+      <DependentUpon>201612111903438_fixesInAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\CreateAnswer.cs" />
+    <Compile Include="Models\CreateQuestion.cs" />
+    <Compile Include="Models\CreateQuiz.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Quiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IQuizRepository.cs" />
     <Compile Include="Services\QuizRepository.cs" />
@@ -130,18 +144,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612100914473_firstadd.resx">
       <DependentUpon>201612100914473_firstadd.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QuizApplication.Dto\QuizApplication.Dto.csproj">
-      <Project>{64d7cc09-5db6-4430-96bc-386a35105831}</Project>
-      <Name>QuizApplication.Dto</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201612111422104_someChanges.resx">
+      <DependentUpon>201612111422104_someChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612111903438_fixesInAnswer.resx">
+      <DependentUpon>201612111903438_fixesInAnswer.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
