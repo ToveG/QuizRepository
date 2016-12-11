@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Entities\Answer.cs" />
@@ -125,8 +126,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\CreateAnswer.cs" />
+    <Compile Include="Models\CreatePerson.cs" />
     <Compile Include="Models\CreateQuestion.cs" />
     <Compile Include="Models\CreateQuiz.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
