@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace QuizApiApplication.Entities
+namespace QuizApplication.Dto
 {
     public class Question
     {
@@ -11,8 +12,8 @@ namespace QuizApiApplication.Entities
         public string QuestionTitle { get; set; }
         public ICollection<Answer> Answers { get; set; }
 
+
         public virtual Quiz quiz { get; set; }
         public int quizId { get; set; }
-
     }
 }

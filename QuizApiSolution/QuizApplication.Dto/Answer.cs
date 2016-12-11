@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuizApplication.Dto
 {
-    public class Class1
+    public class Answer
     {
+        public int Id { get; set; }
+        public string AnswerAlternetive { get; set; }
+        public bool CorrectAnsswer { get; set; }
+
     }
 }

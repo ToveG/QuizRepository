@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace QuizApiApplication.Entities
+namespace QuizApplication.Dto
 {
     public class Quiz
     {
@@ -11,5 +12,7 @@ namespace QuizApiApplication.Entities
         public string Name { get; set; }
         public ICollection<Question> Questions { get; set; }
         public int totalAmountOfQuestions { get; set; }
+
+
     }
 }
