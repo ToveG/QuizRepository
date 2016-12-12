@@ -61,11 +61,11 @@ namespace QuizApiApplication.Controllers
                 Person = person,
                 Quiz = quiz,
                 AnsweredDate = DateTime.Now,
-                Answered = true
+                Answered = true,
+                Answer = answer
             };
             QuizRepository.CreateRegisterAnswer(answerRegister);
             return Ok();
-
         }
     }
 }

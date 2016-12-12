@@ -13,5 +13,6 @@ namespace QuizApiApplication.Entities
         public Person Person { get; set; }
         public DateTime AnsweredDate { get; set; }
         public bool Answered { get; set; }
+        public Answer Answer { get; set; }
     }
 }

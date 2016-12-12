@@ -124,6 +124,14 @@
     <Compile Include="Migrations\201612111903438_fixesInAnswer.Designer.cs">
       <DependentUpon>201612111903438_fixesInAnswer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121324455_changes.cs" />
+    <Compile Include="Migrations\201612121324455_changes.Designer.cs">
+      <DependentUpon>201612121324455_changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121331248_addedAnswerOnRegiserAnswer.cs" />
+    <Compile Include="Migrations\201612121331248_addedAnswerOnRegiserAnswer.Designer.cs">
+      <DependentUpon>201612121331248_addedAnswerOnRegiserAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\CreateAnswer.cs" />
@@ -160,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612111903438_fixesInAnswer.resx">
       <DependentUpon>201612111903438_fixesInAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121324455_changes.resx">
+      <DependentUpon>201612121324455_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121331248_addedAnswerOnRegiserAnswer.resx">
+      <DependentUpon>201612121331248_addedAnswerOnRegiserAnswer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
