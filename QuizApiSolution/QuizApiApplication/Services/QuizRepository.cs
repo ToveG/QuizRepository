@@ -28,6 +28,17 @@ namespace QuizApiApplication.Services
              
         }
 
+        public List<Person> GetAllPersons()
+        {
+            return _ctx.Persons.ToList();
+        }
+
+        public Person GetPersonById(int id)
+        {
+            return _ctx.Persons.SingleOrDefault(p => p.Id == id);
+
+        }
+
         public Question GetQuestionById(int id)
         {
             return _ctx.Questions.Include(q => q.Answers).SingleOrDefault(q => q.Id == id);
@@ -52,6 +63,20 @@ namespace QuizApiApplication.Services
             _ctx.Quiz.Add(quiz);
             _ctx.SaveChanges();
             return _ctx.Quiz.SingleOrDefault(q => q.Id == quiz.Id);
+        }
+
+        public Person CreatePerson(Person person)
+        {
+            var _person = _ctx.Persons.Add(person);
+            _ctx.SaveChanges();
+            return _ctx.Persons.SingleOrDefault(p => p.Id == _person.Id);
+        }
+
+        public AnswerRegister CreateRegisterAnswer(AnswerRegister answerRegister)
+        {
+            var _answerRegister = _ctx.AnswerRegister.Add(answerRegister);
+            _ctx.SaveChanges();
+            return _ctx.AnswerRegister.SingleOrDefault(a => a.Id == _answerRegister.Id);
         }
     }
 }

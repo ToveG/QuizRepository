@@ -5,9 +5,10 @@ using System.Web;
 
 namespace QuizApiApplication.Entities
 {
-    public class QuestionAnswered
+    public class AnswerRegister
     {
         public int Id { get; set; }
+        public Quiz Quiz { get; set; }
         public Question Question { get; set; }
         public Person Person { get; set; }
         public DateTime AnsweredDate { get; set; }

@@ -14,7 +14,7 @@ namespace QuizApiApplication.Entities
 
         public DbSet<Person> Persons { get; set; }
 
-        public DbSet<QuestionAnswered> QuestionsAnswered { get; set; }
+        public DbSet<AnswerRegister> AnswerRegister { get; set; }
 
         public DbSet<Quiz> Quiz { get; set; }
 

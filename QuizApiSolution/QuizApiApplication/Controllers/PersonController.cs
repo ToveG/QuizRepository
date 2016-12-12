@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using QuizApiApplication.Entities;
+using QuizApiApplication.Models;
 using QuizApiApplication.Services;
 using System;
 using System.Collections.Generic;
@@ -26,31 +27,27 @@ namespace QuizApiApplication.Controllers
             }
             set { _quizRepository = value; }
         }
-        [Route("api/quiz")]
+        [Route("api/person")]
         public IHttpActionResult Get()
         {
-            var allQuiz = QuizRepository.GetAllQuiz();
-            foreach (var quiz in allQuiz)
+            var allPersons = QuizRepository.GetAllPersons();
+            if(allPersons == null)
             {
-                var questionCount = quiz.Questions.Count();
-                quiz.totalAmountOfQuestions = questionCount;
+                return NotFound();
             }
-
-            return Ok(Mapper.Map<IEnumerable<Models.Quiz>>(allQuiz));
+            return Ok(Mapper.Map<IEnumerable<Models.Person>>(allPersons));
         }
 
-        [Route("api/quiz/{id}")]
-        public IHttpActionResult GetSpecificQuiz(int id)
+        [Route("api/person/{id}")]
+        public IHttpActionResult GetSpecificPerson(int id)
         {
-            var selectedQuiz = QuizRepository.GetQuizById(id);
-            if (selectedQuiz == null)
+            var selectedPerson = QuizRepository.GetPersonById(id);
+            if (selectedPerson == null)
             {
                 return NotFound();
             }
 
-
-
-            return Ok(Mapper.Map<Models.Quiz>(selectedQuiz));
+            return Ok(Mapper.Map<Models.Person>(selectedPerson));
         }
 
         [Route("api/person")]
@@ -68,7 +65,7 @@ namespace QuizApiApplication.Controllers
                 return BadRequest(ModelState);
             }
 
-            var personToInsert = new Person()
+            var personToInsert = new Entities.Person()
             {
                 Name = person.Name
             };

@@ -16,5 +16,9 @@ namespace QuizApiApplication.Services
         Question CreateQuestion(Question question);
         Answer CreateAnswer(Answer answer);
         Quiz CreateQuiz(Quiz quiz);
+        List<Person> GetAllPersons();
+        Person GetPersonById(int id);
+        Person CreatePerson(Person person);
+        AnswerRegister CreateRegisterAnswer(AnswerRegister answerRegister);
     }
 }

@@ -25,6 +25,9 @@ namespace QuizApiApplication
                 cfg.CreateMap<Models.Quiz, Entities.Quiz>();
                 cfg.CreateMap<Entities.Question, Models.Question>();
                 cfg.CreateMap<Models.Question, Entities.Question>();
+                cfg.CreateMap<Entities.Person, Models.Person>();
+                cfg.CreateMap<Models.Person, Entities.Person>();
+
             });
         }
     }
