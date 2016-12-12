@@ -10,7 +10,7 @@ namespace QuizApiApplication.Services
     public class QuizRepository : IQuizRepository
     {
         private DataContext _ctx = new DataContext();
-         
+
         public List<Question> GetAllQuestions()
         {
             var questions = _ctx.Questions.Include(q => q.Answers).ToList();
@@ -77,6 +77,11 @@ namespace QuizApiApplication.Services
             var _answerRegister = _ctx.AnswerRegister.Add(answerRegister);
             _ctx.SaveChanges();
             return _ctx.AnswerRegister.SingleOrDefault(a => a.Id == _answerRegister.Id);
+        }
+
+        public List<AnswerRegister> GetAllRegisterdQuiz(Quiz quiz)
+        {
+           return _ctx.AnswerRegister.Where(q => q.Quiz.Id == quiz.Id).ToList();
         }
     }
 }

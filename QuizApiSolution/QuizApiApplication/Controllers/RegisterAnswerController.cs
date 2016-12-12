@@ -67,5 +67,35 @@ namespace QuizApiApplication.Controllers
             QuizRepository.CreateRegisterAnswer(answerRegister);
             return Ok();
         }
+
+        [Route("api/registerAnswer/{quizid}")]
+        public IHttpActionResult GetRegisterAnswerByQuizId(int quizId)
+        {
+            var quiz = QuizRepository.GetQuizById(quizId);
+            if(quiz == null)
+            {
+                return NotFound();
+            }
+            var allQuizAnswers = QuizRepository.GetAllRegisterdQuiz(quiz);
+            if(allQuizAnswers == null)
+            {
+                return NotFound();
+            }
+            
+
+            List<ViewQuizResultModel> listView = new List<ViewQuizResultModel>();
+            foreach(var item in allQuizAnswers)
+            {
+                ViewQuizResultModel vqrm = new ViewQuizResultModel();
+                vqrm.AnsweredBy = item.Person.Name;
+                vqrm.QuizName = item.Quiz.Name;
+                //         vqrm.Questions = item.Question.QuestionTitle.ToList();
+                listView.Add(vqrm);
+            }
+
+            return Ok(listView);
+
+        }
+
     }
 }
