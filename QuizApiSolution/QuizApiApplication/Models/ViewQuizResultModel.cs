@@ -7,8 +7,8 @@ namespace QuizApiApplication.Models
 {
     public class ViewQuizResultModel
     {
-        public string AnsweredBy { get; set; }
         public string QuizName { get; set; }
-    //    public List<Question> Questions { get; set; }
+        public string AnsweredBy { get; set; }
+        public DateTime AnsweredDate { get; set; }
     }
 }

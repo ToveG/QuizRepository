@@ -72,30 +72,53 @@ namespace QuizApiApplication.Controllers
         public IHttpActionResult GetRegisterAnswerByQuizId(int quizId)
         {
             var quiz = QuizRepository.GetQuizById(quizId);
+            List<ViewQuizResultModel> listView = new List<ViewQuizResultModel>();
             if(quiz == null)
             {
                 return NotFound();
             }
-            var allQuizAnswers = QuizRepository.GetAllRegisterdQuiz(quiz);
-            if(allQuizAnswers == null)
+            try
+            {
+                listView = GetResultForSpecificQuiz(quiz);
+            }
+            catch (Exception)
             {
                 return NotFound();
             }
-            
-
-            List<ViewQuizResultModel> listView = new List<ViewQuizResultModel>();
-            foreach(var item in allQuizAnswers)
-            {
-                ViewQuizResultModel vqrm = new ViewQuizResultModel();
-                vqrm.AnsweredBy = item.Person.Name;
-                vqrm.QuizName = item.Quiz.Name;
-                //         vqrm.Questions = item.Question.QuestionTitle.ToList();
-                listView.Add(vqrm);
-            }
 
             return Ok(listView);
-
         }
 
+        public List<ViewQuizResultModel> GetResultForSpecificQuiz(Entities.Quiz q)
+        {
+            var allQuizAnswers = QuizRepository.GetAllRegisterdQuiz(q);
+            if (allQuizAnswers == null)
+            {
+                throw new Exception();
+            }
+
+            var groupByPerson = allQuizAnswers.GroupBy(a => a.Person).
+               Select(group =>
+               new
+               {
+                   Name = group.Key,
+               }).ToArray();
+
+            List<ViewQuizResultModel> myList = new List<ViewQuizResultModel>();
+            foreach (var name in groupByPerson)
+            {
+                var g = allQuizAnswers.FirstOrDefault(a => a.AnsweredDate != null && a.Person == name.Name);
+                ViewQuizResultModel vqrm = new ViewQuizResultModel();
+                vqrm.AnsweredBy = name.Name.Name;
+                vqrm.QuizName = q.Name;
+                vqrm.AnsweredDate = g.AnsweredDate;
+                
+                myList.Add(vqrm);
+            }
+
+
+
+            return myList;
+        }
     }
 }

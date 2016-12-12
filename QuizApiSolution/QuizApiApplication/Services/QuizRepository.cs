@@ -81,7 +81,7 @@ namespace QuizApiApplication.Services
 
         public List<AnswerRegister> GetAllRegisterdQuiz(Quiz quiz)
         {
-           return _ctx.AnswerRegister.Where(q => q.Quiz.Id == quiz.Id).ToList();
+           return _ctx.AnswerRegister.Where(q => q.Quiz.Id == quiz.Id).Include(q => q.Person).ToList();
         }
     }
 }
