@@ -10,7 +10,9 @@ namespace QuizApiApplication.Models
     {
         [Required]
         public int nameId { get; set; }
+        [Required]
         public int questionId { get; set; }
+        [Required]
         public int answerId { get; set; }
     }
 }
