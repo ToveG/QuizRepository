@@ -5,10 +5,12 @@ using System.Web;
 
 namespace QuizApiApplication.Models
 {
-    public class ViewQuizResultModel
+    public class ReportViewModel
     {
         public string QuizName { get; set; }
-        public string AnsweredBy { get; set; }
-        public string AnsweredDate { get; set; }
+        public int AmountOfAnswers { get; set; }
+        public int MaximumScoore { get; set; }
+        public int AverageScoore { get; set; }
+
     }
 }

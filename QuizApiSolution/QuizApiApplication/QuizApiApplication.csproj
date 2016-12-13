@@ -132,6 +132,10 @@
     <Compile Include="Migrations\201612121331248_addedAnswerOnRegiserAnswer.Designer.cs">
       <DependentUpon>201612121331248_addedAnswerOnRegiserAnswer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612130547462_changedDateTime.cs" />
+    <Compile Include="Migrations\201612130547462_changedDateTime.Designer.cs">
+      <DependentUpon>201612130547462_changedDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\CreateAnswer.cs" />
@@ -143,7 +147,9 @@
     <Compile Include="Models\QuestionAnswered.cs" />
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Models\RegisterAnswer.cs" />
+    <Compile Include="Models\ReportViewModel.cs" />
     <Compile Include="Models\ViewQuizResultModel.cs" />
+    <Compile Include="Models\ViewRegistredQuizForSpecificPersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IQuizRepository.cs" />
     <Compile Include="Services\QuizRepository.cs" />
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121331248_addedAnswerOnRegiserAnswer.resx">
       <DependentUpon>201612121331248_addedAnswerOnRegiserAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612130547462_changedDateTime.resx">
+      <DependentUpon>201612130547462_changedDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
