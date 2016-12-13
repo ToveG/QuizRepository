@@ -5,8 +5,6 @@ using QuizApiApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace QuizApiApplication.Controllers
@@ -65,8 +63,8 @@ namespace QuizApiApplication.Controllers
                 Answered = true,
                 Answer = answer
             };
-            QuizRepository.CreateRegisterAnswer(answerRegister);
-            return Ok();
+            var item = QuizRepository.CreateRegisterAnswer(answerRegister);
+            return Created("Created", Mapper.Map<Models.RegisterAnswer>(item));
         }
 
         [Route("api/registerAnswer/{quizid}")]
@@ -170,47 +168,23 @@ namespace QuizApiApplication.Controllers
                 return NotFound();
             }
 
-            var groupByPerson = results.GroupBy(a => a.Person).
-               Select(group =>
-               new
-               {
-                   Name = group.Key,
-                   Count = group.Count()
-               }).ToArray();
-
-            List<Entities.Answer> correctAnswerList = new List<Entities.Answer>();
-
-            foreach (var name in groupByPerson)
+            var correctAnswers = results.Where(a => a.Answer.CorrectAnswer).Count();
+            var personCount = results.GroupBy(a => a.Person).Count();
+            decimal average = 0;
+            if (personCount > 0)
             {
-                var g = results.Select(a => a.Answer);
-
-                foreach (var a in g)
-                {
-                    if (a.CorrectAnswer == true)
-                    {
-                        correctAnswerList.Add(a);
-                    }
-                }
+                average = (decimal)correctAnswers / personCount;
             }
+            
             ReportViewModel report = new ReportViewModel();
-            report.AmountOfAnswers = groupByPerson.Count();
+            report.AmountOfAnswers = personCount;
             report.MaximumScoore = quiz.Questions.Count();
             report.QuizName = quiz.Name;
-            report.AverageScoore = 0;
-
+            report.AverageScoore = average;
 
             return Ok(report);
         }
-            
-
-            
-
-
-            
-
-            
-
-        }
+      }
 
     }
 

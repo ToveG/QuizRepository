@@ -21,7 +21,7 @@ namespace QuizApiApplication.Tests
         [TestMethod]
         public void GetAllQuiz()
         {
-            var quiz = quizController.Get() as OkNegotiatedContentResult<IEnumerable<ViewQuiz>>;
+            var quiz = quizController.Get() as OkNegotiatedContentResult<List<ViewQuiz>>;
             Assert.AreEqual(2, new List<ViewQuiz>(quiz.Content).Count);
         }
 
@@ -30,6 +30,7 @@ namespace QuizApiApplication.Tests
         {
             var persons = personController.Get() as OkNegotiatedContentResult<IEnumerable<Models.Person>>;
             Assert.AreEqual(2, new List<Models.Person>(persons.Content).Count);
+            
         }
 
         [TestMethod]
@@ -65,9 +66,9 @@ namespace QuizApiApplication.Tests
         [TestMethod]
         public void CreateAnswer()
         {
-            CreateAnswer a = new CreateAnswer { AnswerAlternative = "test", CorrectAnswer = true };
+            CreateAnswer a = new CreateAnswer { QuestionId = 1, AnswerAlternative = "test", CorrectAnswer = true };
 
-            var x = answerController.CreateAnswer(1, a) as CreatedNegotiatedContentResult<Answer>;
+            var x = answerController.CreateAnswer(a) as CreatedNegotiatedContentResult<Answer>;
 
             Assert.AreEqual(true, x.Content.CorrectAnswer);
         }

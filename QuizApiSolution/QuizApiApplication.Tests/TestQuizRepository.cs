@@ -44,16 +44,19 @@ namespace QuizApiApplication.Tests
 
         public AnswerRegister CreateRegisterAnswer(AnswerRegister answerRegister)
         {
-            throw new NotImplementedException();
+            var aRegister = new List<AnswerRegister>();
+            aRegister.Add(answerRegister);
+
+            return aRegister.SingleOrDefault(a => a.Id == answerRegister.Id);
         }
 
         public List<Person> GetAllPersons()
         {
-            var personList = new List<Person>();
-            personList.Add(new Person { Name = "test" });
-            personList.Add(new Person { Name = "test" });
+            var peopleList = new List<Person>();
+            peopleList.Add(new Person { Name = "test" });
+            peopleList.Add(new Person { Name = "test" });
 
-            return personList;
+            return peopleList;
         }
 
         public List<Quiz> GetAllQuiz()
@@ -85,8 +88,11 @@ namespace QuizApiApplication.Tests
         public Question GetQuestionById(int id)
         {
             var questions = new List<Question>();
-            questions.Add(new Question { Id = 1, QuestionTitle = "test" });
-            questions.Add(new Question { Id = 2, QuestionTitle = "test" });
+            var answers = new List<Answer>();
+            var a = new Answer() { Id = 1 };
+            answers.Add(a);
+            questions.Add(new Question { Id = 1, QuestionTitle = "test", Answers = answers });
+            questions.Add(new Question { Id = 2, QuestionTitle = "test", Answers = answers });
 
             var q = questions.FirstOrDefault(x => x.Id == id);
             return q;
@@ -95,8 +101,14 @@ namespace QuizApiApplication.Tests
         public Quiz GetQuizById(int id)
         {
             var quiz = new List<Quiz>();
-            quiz.Add(new Quiz { Id = 1, Name = "test"  });
-            quiz.Add(new Quiz { Id = 2, Name = "_test" });
+            var questions = new List<Question>();
+            var answers = new List<Answer>();
+            var a = new Answer() { Id = 1 };
+            answers.Add(a);
+            var qu = new Question() { Id = 1, Answers = answers };
+            questions.Add(qu);
+            quiz.Add(new Quiz { Id = 1, Name = "test", Questions = questions });
+            quiz.Add(new Quiz { Id = 2, Name = "_test", Questions = questions });
 
             var q = quiz.FirstOrDefault(x => x.Id == id);
             return q;

@@ -54,11 +54,11 @@ namespace QuizApiApplication.Controllers
             }
             var answers = selectedQuiz.Questions.Select(q => q.Answers);
 
-            Models.Quiz _quiz = new Models.Quiz();
-            _quiz.Name = selectedQuiz.Name;
-            _quiz.Questions = Mapper.Map<List<Models.Question>>(selectedQuiz.Questions);
+            //Models.Quiz _quiz = new Models.Quiz();
+            //_quiz.Name = selectedQuiz.Name;
+            //_quiz.Questions = Mapper.Map<List<Models.Question>>(selectedQuiz.Questions);
             
-            return Ok(Mapper.Map<Models.Quiz>(_quiz));
+            return Ok(Mapper.Map<Models.Quiz>(selectedQuiz));
         }
 
         [Route("api/quiz")]

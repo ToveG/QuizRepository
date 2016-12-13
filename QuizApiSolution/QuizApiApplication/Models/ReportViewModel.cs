@@ -10,7 +10,7 @@ namespace QuizApiApplication.Models
         public string QuizName { get; set; }
         public int AmountOfAnswers { get; set; }
         public int MaximumScoore { get; set; }
-        public int AverageScoore { get; set; }
+        public decimal AverageScoore { get; set; }
 
     }
 }
