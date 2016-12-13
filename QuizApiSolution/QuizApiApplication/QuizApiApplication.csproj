@@ -148,6 +148,7 @@
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Models\RegisterAnswer.cs" />
     <Compile Include="Models\ReportViewModel.cs" />
+    <Compile Include="Models\ViewQuiz.cs" />
     <Compile Include="Models\ViewQuizResultModel.cs" />
     <Compile Include="Models\ViewRegistredQuizForSpecificPersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

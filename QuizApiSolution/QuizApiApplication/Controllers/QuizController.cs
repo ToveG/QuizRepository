@@ -29,13 +29,19 @@ namespace QuizApiApplication.Controllers
         public IHttpActionResult Get()
         {
             var allQuiz = QuizRepository.GetAllQuiz();
+            if(allQuiz == null)
+            {
+                return NotFound();
+            }
+            List<ViewQuiz> quizList = new List<ViewQuiz>(); 
             foreach (var quiz in allQuiz)
             {
-                var questionCount = quiz.Questions.Count();
-                quiz.totalAmountOfQuestions = questionCount;
+                ViewQuiz q = new ViewQuiz();
+                q.AmountOfQuestions = quiz.Questions.Count();
+                q.QuizName = quiz.Name;
+                quizList.Add(q);
             }
-
-            return Ok(Mapper.Map<IEnumerable<Models.Quiz>>(allQuiz));
+            return Ok(quizList);
         }
 
         [Route("api/quiz/{id}")]
@@ -46,10 +52,13 @@ namespace QuizApiApplication.Controllers
             {
                 return NotFound();
             }
+            var answers = selectedQuiz.Questions.Select(q => q.Answers);
 
-
-
-            return Ok(Mapper.Map<Models.Quiz>(selectedQuiz));
+            Models.Quiz _quiz = new Models.Quiz();
+            _quiz.Name = selectedQuiz.Name;
+            _quiz.Questions = Mapper.Map<List<Models.Question>>(selectedQuiz.Questions);
+            
+            return Ok(Mapper.Map<Models.Quiz>(_quiz));
         }
 
         [Route("api/quiz")]
