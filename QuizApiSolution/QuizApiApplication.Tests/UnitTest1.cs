@@ -140,16 +140,7 @@ namespace QuizApiApplication.Tests
             var x = registerAnswerController.GetReportForSpecificQuiz(1) as OkNegotiatedContentResult<ReportViewModel>;
             Assert.AreEqual(x.Content.AmountOfAnswers, rvm.AmountOfAnswers);
         }
-
-
-
-
-
-
-
-
-
-
+        
         [TestInitialize]
         public void BeforeEachTest()
         {

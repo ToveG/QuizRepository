@@ -137,9 +137,7 @@ namespace QuizApiApplication.Tests
 
         public List<AnswerRegister> GetRegisterdQuizByPersonId(int quizId, int personId)
         {
-            //Answer a = new Answer() { Id = 1 };
             Person p = new Person() { Id = 1, Name = "Anna" };
-            //Question q = new Question() { Id = 3 };
             Quiz q = new Quiz() { Id = 1 };
             AnswerRegister ar = new AnswerRegister() { Person = p, Quiz = q };
 

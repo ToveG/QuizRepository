@@ -199,6 +199,5 @@ namespace QuizApiApplication.Controllers
             return Ok(report);
         }
       }
-
     }
 

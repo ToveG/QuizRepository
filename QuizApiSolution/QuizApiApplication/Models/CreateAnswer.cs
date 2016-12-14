@@ -14,7 +14,5 @@ namespace QuizApiApplication.Models
         public string AnswerAlternative { get; set; }
         [Required]
         public bool CorrectAnswer { get; set; }
-     //   [Required(ErrorMessage = "You have to provide a questionId.")]
-     //   public int QuestionId { get; set; }
     }
 }

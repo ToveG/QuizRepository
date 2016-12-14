@@ -74,8 +74,5 @@ namespace QuizApiApplication.Controllers
 
             return Created("Created", Mapper.Map<Models.Person>(p));
         }
-
-
-
     }
 }
