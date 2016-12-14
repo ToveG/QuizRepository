@@ -24,41 +24,41 @@ namespace QuizApiApplication.Controllers
 
         
         
-        //[Route("api/answer/question/{questionId}")]
-        [Route("api/answer/question")]
-        [HttpPost]
-        //public IHttpActionResult CreateAnswer(int questionId,
-        public IHttpActionResult CreateAnswer(
-        [FromBody] Models.CreateAnswer answer)
-            {
+        ////[Route("api/answer/question/{questionId}")]
+        //[Route("api/answer/question")]
+        //[HttpPost]
+        ////public IHttpActionResult CreateAnswer(int questionId,
+        //public IHttpActionResult CreateAnswer(
+        //[FromBody] Models.CreateAnswer answer)
+        //    {
             
-            if (answer == null)
-            {
-                return BadRequest();
-            }
+        //    if (answer == null)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var question = QuizRepository.GetQuestionById(answer.QuestionId);
-            //var question = QuizRepository.GetQuestionById(questionId);
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    var question = QuizRepository.GetQuestionById(answer.QuestionId);
+        //    //var question = QuizRepository.GetQuestionById(questionId);
 
-            if (question == null)
-            {
-                return NotFound();
-            }
+        //    if (question == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var answerToInsert = new Answer()
-            {
-                AnswerAlternative = answer.AnswerAlternative,
-                CorrectAnswer = answer.CorrectAnswer,
-                question = question
-            };
+        //    var answerToInsert = new Answer()
+        //    {
+        //        AnswerAlternative = answer.AnswerAlternative,
+        //        CorrectAnswer = answer.CorrectAnswer,
+        //        question = question
+        //    };
 
-            var item = QuizRepository.CreateAnswer(answerToInsert);
+        //    var item = QuizRepository.CreateAnswer(answerToInsert);
 
-            return Created("Created", Mapper.Map<Models.Answer>(item));
-        }
+        //    return Created("Created", Mapper.Map<Models.Answer>(item));
+        //}
     }
 }

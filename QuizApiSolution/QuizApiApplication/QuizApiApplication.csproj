@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\SelectedOption.cs" />
     <Compile Include="Models\CreateAnswer.cs" />
     <Compile Include="Models\CreatePerson.cs" />
     <Compile Include="Models\CreateQuestion.cs" />

@@ -70,10 +70,17 @@ namespace QuizApiApplication.Controllers
             };
 
             var question = QuizRepository.CreateQuestion(itemToInsert);
+            Answer answerToInsert;
+            foreach (var x in questionItem.Answers)
+            {
+                answerToInsert = new Answer();
+                answerToInsert.AnswerAlternative = x.AnswerAlternative;
+                answerToInsert.CorrectAnswer = x.CorrectAnswer;
+                answerToInsert.question = question;
+                QuizRepository.CreateAnswer(answerToInsert);
+            }
 
             return Created("Created", Mapper.Map<Models.Question>(question));
-
         }
-
     }
 }

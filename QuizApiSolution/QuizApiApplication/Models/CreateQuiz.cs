@@ -9,6 +9,7 @@ namespace QuizApiApplication.Models
     public class CreateQuiz
     {
         public string Name { get; set; }
+   //     public List<CreateAnswer> Answers { get; set; }
 
     }
 }

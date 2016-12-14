@@ -66,9 +66,12 @@ namespace QuizApiApplication.Tests
         [TestMethod]
         public void CreateAnswer()
         {
-            CreateAnswer a = new CreateAnswer { QuestionId = 1, AnswerAlternative = "test", CorrectAnswer = true };
+            List<CreateAnswer> list = new List<Models.CreateAnswer>();
+            CreateAnswer a = new Models.CreateAnswer { AnswerAlternative = "test", CorrectAnswer = true };
+            list.Add(a);
+            CreateQuestion q = new CreateQuestion { Title="test", Answers= list };
 
-            var x = answerController.CreateAnswer(a) as CreatedNegotiatedContentResult<Answer>;
+           var x = questionController.CreateQuestion(1, q) as CreatedNegotiatedContentResult<Answer>;
 
             Assert.AreEqual(true, x.Content.CorrectAnswer);
         }

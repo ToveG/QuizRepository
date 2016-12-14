@@ -5,6 +5,7 @@ using QuizApiApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 
 namespace QuizApiApplication.Controllers
@@ -36,35 +37,74 @@ namespace QuizApiApplication.Controllers
             {
                 return NotFound();
             }
-            var question = quiz.Questions.SingleOrDefault(q => q.Id == regAnswer.questionId);
-            if(question == null)
+
+            var questionCount = quiz.Questions.Count();
+            var amountOfAnswerdQuestions = regAnswer.selectedAnswerPerQuestion.Count();
+            if(amountOfAnswerdQuestions < questionCount)
             {
-                return NotFound();
-            }
-            var selectedQuestion = QuizRepository.GetQuestionById(question.Id);
-            if(selectedQuestion == null)
-            {
-                return NotFound();
-            }
-            var answer = selectedQuestion.Answers.SingleOrDefault(d => d.Id == regAnswer.answerId);
-            if(answer == null)
-            {
-                return NotFound();
+                return StatusCode(HttpStatusCode.NotAcceptable);
             }
 
             var person = QuizRepository.GetPersonById(regAnswer.nameId);
 
-            AnswerRegister answerRegister = new AnswerRegister()
+            foreach (var a in regAnswer.selectedAnswerPerQuestion)
             {
-                Question = question,
-                Person = person,
-                Quiz = quiz,
-                AnsweredDate = DateTime.Now.ToString("yyyyMMdd"),
-                Answered = true,
-                Answer = answer
-            };
-            var item = QuizRepository.CreateRegisterAnswer(answerRegister);
-            return Created("Created", Mapper.Map<Models.RegisterAnswer>(item));
+                var question = quiz.Questions.SingleOrDefault(q => q.Id == a.questionId);
+                if (question == null)
+                {
+                    return NotFound();
+                }
+                var selectedQuestion = QuizRepository.GetQuestionById(question.Id);
+                if (selectedQuestion == null)
+                {
+                    return NotFound();
+                }
+                var answer = selectedQuestion.Answers.SingleOrDefault(d => d.Id == a.answerId);
+                if (answer == null)
+                {
+                    return NotFound();
+                }
+
+                AnswerRegister answerRegister = new AnswerRegister()
+                {
+                    Question = question,
+                    Person = person,
+                    Quiz = quiz,
+                    AnsweredDate = DateTime.Now.ToString("yyyyMMdd"),
+                    Answered = true,
+                    Answer = answer
+                };
+
+                var _item = QuizRepository.CreateRegisterAnswer(answerRegister);
+
+            }
+
+            //var question = quiz.Questions.SingleOrDefault(q => q.Id == regAnswer.questionId);
+
+            //var selectedQuestion = QuizRepository.GetQuestionById(question.Id);
+            //if (selectedQuestion == null)
+            //{
+            //    return NotFound();
+            //}
+            //var answer = selectedQuestion.Answers.SingleOrDefault(d => d.Id == regAnswer.answerId);
+            //if (answer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //AnswerRegister answerRegister = new AnswerRegister()
+            //{
+            //    Question = question,
+            //    Person = person,
+            //    Quiz = quiz,
+            //    AnsweredDate = DateTime.Now.ToString("yyyyMMdd"),
+            //    Answered = true,
+            //    Answer = answer
+            //};
+
+            //var item = QuizRepository.CreateRegisterAnswer(answerRegister);
+            //return Created("Created", Mapper.Map<Models.RegisterAnswer>(item));
+            return Ok();
         }
 
         [Route("api/registerAnswer/{quizid}")]
