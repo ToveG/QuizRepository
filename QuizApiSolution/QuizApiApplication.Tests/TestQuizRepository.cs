@@ -72,13 +72,20 @@ namespace QuizApiApplication.Tests
 
         public List<AnswerRegister> GetAllRegisterdQuiz(Quiz quiz)
         {
-            throw new NotImplementedException();
+            Answer a = new Answer() { Id = 1 };
+            Person p = new Person() { Id = 1, Name = "Anna"  };
+            Question q = new Question() { Id = 3 };
+            Quiz qz = new Quiz() { Id = 1 };
+            AnswerRegister ar = new AnswerRegister() { Answer = a, Person = p, Question = q, Quiz = qz, AnsweredDate= DateTime.Now.ToString() };
+            List<AnswerRegister> list = new List<AnswerRegister>();
+            list.Add(ar);
+            return list;
         }
 
         public Person GetPersonById(int id)
         {
             var people = new List<Person>();
-            people.Add(new Person { Id = 1, Name = "test" });
+            people.Add(new Person { Id = 1, Name = "Anna" });
             people.Add(new Person { Id = 2, Name = "test" });
 
             var p = people.FirstOrDefault(x => x.Id == id);
@@ -117,12 +124,29 @@ namespace QuizApiApplication.Tests
 
         public List<AnswerRegister> GetQuizReportById(int quizId)
         {
-            throw new NotImplementedException();
+            Answer a = new Answer() { Id = 1, CorrectAnswer = true};
+            Person p = new Person() { Id = 1, Name = "Anna" };
+            Question q = new Question() { Id = 3 };
+            Quiz qz = new Quiz() { Id = 1 };
+            AnswerRegister ar = new AnswerRegister() { Person = p, Quiz = qz, Question = q, Answer = a, AnsweredDate = DateTime.Now.ToString() };
+
+            List<AnswerRegister> list = new List<AnswerRegister>();
+            list.Add(ar);
+            return list;
         }
 
         public List<AnswerRegister> GetRegisterdQuizByPersonId(int quizId, int personId)
         {
-            throw new NotImplementedException();
+            //Answer a = new Answer() { Id = 1 };
+            Person p = new Person() { Id = 1, Name = "Anna" };
+            //Question q = new Question() { Id = 3 };
+            Quiz q = new Quiz() { Id = 1 };
+            AnswerRegister ar = new AnswerRegister() { Person = p, Quiz = q };
+
+            List<AnswerRegister> list = new List<AnswerRegister>();
+            list.Add(ar);
+
+            return list.Where(r => r.Quiz.Id == quizId && r.Person.Id == personId).ToList();
         }
 
         List<Question> IQuizRepository.GetAllQuestions()

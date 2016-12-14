@@ -11,6 +11,5 @@ namespace QuizApiApplication.Models
         public int Id { get; set; }
         public string AnswerAlternative { get; set; }
         public bool CorrectAnswer { get; set; }
-
     }
 }

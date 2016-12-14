@@ -46,7 +46,7 @@ namespace QuizApiApplication.Controllers
             }
 
             var person = QuizRepository.GetPersonById(regAnswer.nameId);
-
+     
             foreach (var a in regAnswer.selectedAnswerPerQuestion)
             {
                 var question = quiz.Questions.SingleOrDefault(q => q.Id == a.questionId);
@@ -73,37 +73,11 @@ namespace QuizApiApplication.Controllers
                     AnsweredDate = DateTime.Now.ToString("yyyyMMdd"),
                     Answered = true,
                     Answer = answer
+
                 };
-
                 var _item = QuizRepository.CreateRegisterAnswer(answerRegister);
-
             }
 
-            //var question = quiz.Questions.SingleOrDefault(q => q.Id == regAnswer.questionId);
-
-            //var selectedQuestion = QuizRepository.GetQuestionById(question.Id);
-            //if (selectedQuestion == null)
-            //{
-            //    return NotFound();
-            //}
-            //var answer = selectedQuestion.Answers.SingleOrDefault(d => d.Id == regAnswer.answerId);
-            //if (answer == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //AnswerRegister answerRegister = new AnswerRegister()
-            //{
-            //    Question = question,
-            //    Person = person,
-            //    Quiz = quiz,
-            //    AnsweredDate = DateTime.Now.ToString("yyyyMMdd"),
-            //    Answered = true,
-            //    Answer = answer
-            //};
-
-            //var item = QuizRepository.CreateRegisterAnswer(answerRegister);
-            //return Created("Created", Mapper.Map<Models.RegisterAnswer>(item));
             return Ok();
         }
 
@@ -129,7 +103,7 @@ namespace QuizApiApplication.Controllers
         }
 
         [Route("api/registerAnswer/quiz/{quizid}/person/{personid}")]
-        public IHttpActionResult GetRegisterAnswerByQuizId(int quizId, int personId)
+        public IHttpActionResult GetRegisterAnswerForPersonById(int quizId, int personId)
         {
             var quiz = QuizRepository.GetQuizById(quizId);
             if(quiz == null)
